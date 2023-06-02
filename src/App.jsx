@@ -34,22 +34,7 @@ function App() {
       </div>
       <button className='btn' onClick={handleAddBtn}> Add </button>
     </form>
-
-    <h1> To Do List </h1>
-    <ul>
-      {todos !== [] && todos.map(item => {
-        return (
-        <li>
-            <label>
-              <input type='checkbox' checked={item.completed}/>
-                {item.text}
-            </label>
-            <button className='btn btn-danger'> Delete </button>
-        </li>
-        )
-      })
-      }
-    </ul>
+    <ToDoList list={todos} />
     </>
   );
 };

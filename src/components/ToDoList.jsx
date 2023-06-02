@@ -1,21 +1,24 @@
 import React from 'react'
 
-function ToDoList(list) {
+function ToDoList(props) {
+
+    let list = props.list;
 
     return (
         <>
-            <h1> ToDoList 24:45 </h1>
+            <h1> To Do List </h1>
             <ul>
-                {list.lenght > 0 && list.map(item => {
-                    <li>
-                        <label>
-                            <input type='checkbox' checked={item.complete}/>
-                            {item.text}
-                        </label>
-                        <button className='btn btn-danger'> Delete </button>
-                    </li>
-                })
-                }
+            {list !== [] && list.map(item => {
+                return (
+                <li>
+                    <label>
+                    <input type='checkbox' checked={item.completed}/>
+                        {item.text}
+                    </label>
+                    <button className='btn btn-danger'> Delete </button>
+                </li>
+                )
+            })}
             </ul>
         </>
     )
