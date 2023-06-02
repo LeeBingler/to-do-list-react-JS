@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './style.css'
+import ToDoList from './components/ToDoList';
 
 function App() {
   const [newItem, setNewItem] = useState('');
@@ -8,6 +9,16 @@ function App() {
   function handleSubmit(event) {
     event.preventDefault();
   };
+
+  function handleAddBtn() {
+    if (newItem.length === 0)
+      return;
+    let item = {text: newItem, completed: false}
+    todos.push(item);
+    setNewItem('');
+    setTodos(todos);
+    console.log(todos);
+  }
 
   return (
     <>
@@ -21,18 +32,23 @@ function App() {
         type='text' 
         id='item'/>
       </div>
-      <button className='btn' onClick={() => setTodos(newItem)}> Add </button>
+      <button className='btn' onClick={handleAddBtn}> Add </button>
     </form>
 
-    <h1>To Do list</h1>
+    <h1> To Do List </h1>
     <ul>
-      <li>
-        <label>
-          <input type='checkbox'/>
-          YES
-        </label>
-        <button className='btn btn-danger'> Delete </button>
-      </li>
+      {todos !== [] && todos.map(item => {
+        return (
+        <li>
+            <label>
+              <input type='checkbox' checked={item.completed}/>
+                {item.text}
+            </label>
+            <button className='btn btn-danger'> Delete </button>
+        </li>
+        )
+      })
+      }
     </ul>
     </>
   );
