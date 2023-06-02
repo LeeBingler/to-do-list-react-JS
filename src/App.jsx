@@ -21,10 +21,8 @@ function App() {
   
   function handleDeleteBtn(key) {
     setTodos(currentTodos => {
-      return currentTodos.map((item, index) => {
-        if (item.key === key) {
-          currentTodos.pop(index);
-        }
+      return currentTodos.filter(item => {
+        item.key != key;
       });
     });
   }
@@ -33,10 +31,12 @@ function App() {
     setTodos(currentTodos => {
       return currentTodos.map(item => {
         if (item.key === key) {
-          item.completed = !item.completed;
+          return {...item, completed: !item.completed};
         }
       });
     });
+
+    console.log(todos);
   }
   
   return (
@@ -64,7 +64,7 @@ function App() {
               <input 
               type='checkbox'
               onChange={event => handleCheckBox(item.key)}
-              Checked={item.completed}/>
+              checked={item.completed}/>
               {item.text}
             </label>
             <button 
