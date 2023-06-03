@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ToDoList({setTodos, todos}) {
+function ToDoList({ setTodos, todos }) {
     function handleCheckBox(key) {
         setTodos(currentTodos => {
           return currentTodos.map(item => {
@@ -29,16 +29,16 @@ function ToDoList({setTodos, todos}) {
                 return (
                 <li key={item.key}>
                     <label>
-                    <input 
-                    type='checkbox'
-                    onChange={() => handleCheckBox(item.key)}
-                    checked={item.completed}/>
-                    {item.text}
+                        <input 
+                        type='checkbox'
+                        onChange={() => handleCheckBox(item.key)}
+                        checked={item.completed}/>
+                        {item.text}
                     </label>
                     <button 
                     className='btn btn-danger'
                     onClick={() => handleDeleteBtn(item.key)}> 
-                    Delete 
+                        Delete 
                     </button>
                 </li>
                 )

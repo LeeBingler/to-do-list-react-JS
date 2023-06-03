@@ -26,13 +26,13 @@ function Form({ setTodos }) {
         className='new-item-form'
         onSubmit={handleSubmit}>
             <div className='form-row'>
-            <label> New Item </label>
-            <input value={newItem} 
-            onChange={event => setNewItem(event.target.value)}
-            type='text' 
-            id='item'/>
+                <label> New Item </label>
+                <input value={newItem} 
+                onChange={event => setNewItem(event.target.value)}
+                type='text' 
+                id='item'/>
             </div>
-        <button className='btn' onClick={handleAddBtn}> Add </button>
+            <button className='btn' onClick={handleAddBtn}> Add </button>
         </form>
     )
 }
