@@ -1,11 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './style.css'
 import ToDoList from './components/ToDoList';
 import Form from './components/Form';
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    if (localStorage.getItem('TODOS') === null) return [];
+    return JSON.parse(localStorage.getItem('TODOS'));
+  });
   
+  useEffect(() => {
+    localStorage.setItem('TODOS', JSON.stringify(todos))
+  }, [todos]);
   
   function handleDeleteBtn(key) {
     setTodos(currentTodos => {
