@@ -4,18 +4,8 @@ import ToDoList from './components/ToDoList';
 import Form from './components/Form';
 
 function App() {
-  const [newItem, setNewItem] = useState('');
   const [todos, setTodos] = useState([]);
   
-
-  function handleAddBtn() {
-    if (newItem.length === 0)
-    return;
-    let item = {text: newItem, completed: false, key: crypto.randomUUID()};
-    todos.push(item);
-    setNewItem('');
-    setTodos(todos);
-  }
   
   function handleDeleteBtn(key) {
     setTodos(currentTodos => {
@@ -38,7 +28,7 @@ function App() {
   
   return (
     <>
-      <Form setNewItem={setNewItem} newItem={newItem} handleAddBtn={handleAddBtn} />
+      <Form setTodos={setTodos} />
       <ToDoList setTodos={setTodos} todos={todos} handleCheckBox={handleCheckBox} handleDeleteBtn={handleDeleteBtn} />
     </>
   );

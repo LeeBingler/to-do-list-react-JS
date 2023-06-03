@@ -14,7 +14,7 @@ function ToDoList(props) {
                     <label>
                     <input 
                     type='checkbox'
-                    onChange={event => props.handleCheckBox(item.key)}
+                    onChange={() => props.handleCheckBox(item.key)}
                     checked={item.completed}/>
                     {item.text}
                     </label>
@@ -32,4 +32,4 @@ function ToDoList(props) {
     )
 }
 
-export default ToDoList
+export default ToDoList;

@@ -1,10 +1,25 @@
 import React from 'react'
+import { useState } from 'react'
 
 function Form(props) {
+    const [newItem, setNewItem] = useState('');
 
     function handleSubmit(event) {
         event.preventDefault();
     };
+
+    function handleAddBtn() {
+        if (newItem.length === 0)
+          return;
+        
+        props.setTodos(currentTodos => {
+          return [
+            ...currentTodos, 
+            {text: newItem, completed: false, key: crypto.randomUUID()}
+          ];
+        })
+        setNewItem('');
+    }
 
     return (
         <form 
@@ -12,14 +27,14 @@ function Form(props) {
         onSubmit={handleSubmit}>
             <div className='form-row'>
             <label> New Item </label>
-            <input value={props.newItem} 
-            onChange={event => props.setNewItem(event.target.value)}
+            <input value={newItem} 
+            onChange={event => setNewItem(event.target.value)}
             type='text' 
             id='item'/>
             </div>
-        <button className='btn' onClick={props.handleAddBtn}> Add </button>
+        <button className='btn' onClick={handleAddBtn}> Add </button>
         </form>
     )
 }
 
-export default Form
+export default Form;
