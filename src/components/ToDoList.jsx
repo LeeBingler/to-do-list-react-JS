@@ -1,34 +1,32 @@
 import React from 'react'
 
 function ToDoList(props) {
-    let list = props.list;
+    let todos = props.todos;
 
     return (
         <>
             <h1> To Do List </h1>
             <ul>
-            {
-            list.length !== 0 &&
-            list.map(item => {
-                console.log(item);
+            { todos.map(item => {
+
                 return (
-                <li>
+                <li key={item.key}>
                     <label>
-                        <input 
-                        type='checkbox'
-                        onChange={props.handleCheck(item.key)}
-                        Checked={item.completed}
-                        />
-                        {item.text}
+                    <input 
+                    type='checkbox'
+                    onChange={event => props.handleCheckBox(item.key)}
+                    checked={item.completed}/>
+                    {item.text}
                     </label>
                     <button 
                     className='btn btn-danger'
-                    onClick={props.deleteBtnFunc}> 
-                        Delete 
+                    onClick={() => props.handleDeleteBtn(item.key)}> 
+                    Delete 
                     </button>
                 </li>
-               )
-            })}
+                )
+                })
+            }
             </ul>
         </>
     )

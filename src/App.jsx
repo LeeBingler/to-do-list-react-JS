@@ -22,7 +22,7 @@ function App() {
   function handleDeleteBtn(key) {
     setTodos(currentTodos => {
       return currentTodos.filter(item => {
-        item.key != key;
+        return item.key != key;
       });
     });
   }
@@ -33,10 +33,9 @@ function App() {
         if (item.key === key) {
           return {...item, completed: !item.completed};
         }
+        return item;
       });
     });
-
-    console.log(todos);
   }
   
   return (
@@ -53,33 +52,10 @@ function App() {
         </div>
       <button className='btn' onClick={handleAddBtn}> Add </button>
     </form>
-    
-    <h1> To Do List </h1>
-    <ul>
-    { todos.map(item => {
 
-        return (
-          <li key={item.key}>
-            <label>
-              <input 
-              type='checkbox'
-              onChange={event => handleCheckBox(item.key)}
-              checked={item.completed}/>
-              {item.text}
-            </label>
-            <button 
-            className='btn btn-danger'
-            onClick={() => handleDeleteBtn(item.key)}> 
-              Delete 
-            </button>
-          </li>
-          )
-        })
-    }
-        
-        </ul>
-        </>
-        );
-      };
+    <ToDoList todos={todos} handleCheckBox={handleCheckBox} handleDeleteBtn={handleDeleteBtn}/>
+    </>
+  );
+}
       
       export default App;
