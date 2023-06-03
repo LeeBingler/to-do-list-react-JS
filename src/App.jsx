@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './style.css'
 import ToDoList from './components/ToDoList';
+import Form from './components/Form';
 
 function App() {
   const [newItem, setNewItem] = useState('');
@@ -40,19 +41,7 @@ function App() {
   
   return (
     <>
-    <form 
-      className='new-item-form'
-      onSubmit={handleSubmit}>
-        <div className='form-row'>
-          <label> New Item </label>
-          <input value={newItem} 
-          onChange={event => setNewItem(event.target.value)}
-          type='text' 
-          id='item'/>
-        </div>
-      <button className='btn' onClick={handleAddBtn}> Add </button>
-    </form>
-
+    <Form handleSubmit={handleSubmit} setNewItem={setNewItem} newItem={newItem} handleAddBtn={handleAddBtn}/>
     <ToDoList todos={todos} handleCheckBox={handleCheckBox} handleDeleteBtn={handleDeleteBtn}/>
     </>
   );
