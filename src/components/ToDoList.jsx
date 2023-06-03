@@ -1,7 +1,24 @@
 import React from 'react'
 
-function ToDoList(props) {
-    let todos = props.todos;
+function ToDoList({setTodos, todos}) {
+    function handleCheckBox(key) {
+        setTodos(currentTodos => {
+          return currentTodos.map(item => {
+            if (item.key === key) {
+              return {...item, completed: !item.completed};
+            }
+            return item;
+          });
+        });
+    }
+
+    function handleDeleteBtn(key) {
+        setTodos(currentTodos => {
+          return currentTodos.filter(item => {
+            return item.key != key;
+          });
+        });
+    }
 
     return (
         <>
@@ -14,13 +31,13 @@ function ToDoList(props) {
                     <label>
                     <input 
                     type='checkbox'
-                    onChange={() => props.handleCheckBox(item.key)}
+                    onChange={() => handleCheckBox(item.key)}
                     checked={item.completed}/>
                     {item.text}
                     </label>
                     <button 
                     className='btn btn-danger'
-                    onClick={() => props.handleDeleteBtn(item.key)}> 
+                    onClick={() => handleDeleteBtn(item.key)}> 
                     Delete 
                     </button>
                 </li>

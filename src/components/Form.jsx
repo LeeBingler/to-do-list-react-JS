@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-function Form(props) {
+function Form({ setTodos }) {
     const [newItem, setNewItem] = useState('');
 
     function handleSubmit(event) {
@@ -12,7 +12,7 @@ function Form(props) {
         if (newItem.length === 0)
           return;
         
-        props.setTodos(currentTodos => {
+        setTodos(currentTodos => {
           return [
             ...currentTodos, 
             {text: newItem, completed: false, key: crypto.randomUUID()}
