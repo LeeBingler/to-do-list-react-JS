@@ -7,10 +7,7 @@ function App() {
   const [newItem, setNewItem] = useState('');
   const [todos, setTodos] = useState([]);
   
-  function handleSubmit(event) {
-    event.preventDefault();
-  };
-  
+
   function handleAddBtn() {
     if (newItem.length === 0)
     return;
@@ -41,10 +38,10 @@ function App() {
   
   return (
     <>
-    <Form handleSubmit={handleSubmit} setNewItem={setNewItem} newItem={newItem} handleAddBtn={handleAddBtn}/>
-    <ToDoList todos={todos} handleCheckBox={handleCheckBox} handleDeleteBtn={handleDeleteBtn}/>
+      <Form setNewItem={setNewItem} newItem={newItem} handleAddBtn={handleAddBtn} />
+      <ToDoList setTodos={setTodos} todos={todos} handleCheckBox={handleCheckBox} handleDeleteBtn={handleDeleteBtn} />
     </>
   );
 }
       
-      export default App;
+export default App;
