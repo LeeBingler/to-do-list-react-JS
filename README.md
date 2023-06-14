@@ -12,6 +12,7 @@ Make a reel project with JS, NPM and React
 
 - Node.js
 - NPM
+- React
 
 ```javascript
 
